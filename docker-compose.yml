@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  rov-dev:
+    build: .  # Tells Compose to build the image from the Dockerfile in this directory
+    image: rov-dev-image # Gives the built image a name
+    container_name: rov-dev-container
+    runtime: nvidia # CRITICAL: This grants the container access to the NVIDIA GPU
+    # Mount the local 'src' folder into the container's workspace
+    # This allows you to edit code on your Windows machine and build it inside the container
+    volumes:
+      - ./src:/root/ros2_ws/src
+    # GUI Forwarding Configuration for RVIZ2, etc.
+    environment:
+      - "NVIDIA_VISIBLE_DEVICES=all"
+      - "DISPLAY"
+      - "QT_X11_NO_MITSHM=1"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    # Keep the container running in the background
+    command: tail -f /dev/null
