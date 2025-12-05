@@ -24,8 +24,10 @@ class Joystick(Node):
         axes = [joystick.get_axis(i) for i in range(joystick.get_numaxes())]
 
         for e in pygame.event.get():
-            if e.type == pygame.JOYBUTTONDOWN:
-                self.states[e.button] = 1 - self.states[e.button]
+           if e.type == pygame.JOYBUTTONDOWN:
+             self.states[e.button] = 1
+           elif e.type == pygame.JOYBUTTONUP:
+             self.states[e.button] = 0
 
         msg = String()
         msg.data = f"Axes: {axes}, Buttons: {self.states}"
