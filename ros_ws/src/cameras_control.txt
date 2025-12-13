@@ -1,0 +1,56 @@
+import os
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    nodes = []
+
+    # ---------------------------------------------------------
+    # 1. CAMERA CONFIGURATION
+    # ---------------------------------------------------------
+    # UPDATE THIS LIST: specific video device numbers from 'ls /dev/video*'
+    # Based on your screenshot, you used these IDs. Update if they changed.
+    device_ids = [2, 4, 9, 7, 1, 14, 12, 15, 13, 0]
+    
+    # If your cameras are skipping numbers (like video0, video2...), 
+    # use your specific list like: device_ids = [0, 2, 4, 6, 8, 10, 12]
+
+    for i, dev_id in enumerate(device_ids):
+        cam_name = f'cam{i+1}' # Creates cam1, cam2, cam3...
+        
+        node = Node(
+            package='v4l2_camera',
+            executable='v4l2_camera_node',
+            name=f'v4l2_camera_{cam_name}',
+            namespace=cam_name,
+            parameters=[{
+                'video_device': f'/dev/video{dev_id}',
+                'image_size': [320, 240],    # Low Res is REQUIRED for 7 cams
+                'pixel_format': 'YUYV',      # Stable format
+                'output_encoding': 'rgb8',   # Required for compression plugin
+                'time_per_frame': [1, 15] 
+            }],
+            # This ensures the topic name is standard
+            remappings=[('image_raw', 'image_raw')],
+            output='screen'
+        )
+        nodes.append(node)
+
+    # ---------------------------------------------------------
+    # 2. FOXGLOVE BRIDGE (The "Anti-Lag" Config)
+    # ---------------------------------------------------------
+    bridge = Node(
+        package='foxglove_bridge',
+        executable='foxglove_bridge',
+        name='foxglove_bridge',
+        parameters=[{
+            'port': 8765,
+            # TINY BUFFER: 100,000 bytes (100KB). 
+            # This forces the bridge to drop old frames instantly.
+            'send_buffer_limit': 100000, 
+            'use_compression': True
+        }]
+    )
+    nodes.append(bridge)
+
+    return LaunchDescription(nodes)
