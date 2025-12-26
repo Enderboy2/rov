@@ -69,7 +69,6 @@ while True:
                     direction = "MOVE LEFT"
                     lastdirection = direction
             else:
-                if len(rods) > 0:
                     # if both rods are not visible uses the last known direction
                     direction = lastdirection
             
