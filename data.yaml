@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['green-european-crab']
+
+roboflow:
+  workspace: crabdetection-lagib
+  project: final-uquog
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/crabdetection-lagib/final-uquog/dataset/1
