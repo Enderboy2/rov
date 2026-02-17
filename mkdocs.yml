@@ -1,0 +1,45 @@
+site_name: Overflow Robotics
+site_url: https://overflowrobotics.com
+site_description: Engineering Documentation for the MATE ROV Ranger Class
+
+theme:
+  name: material
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    scheme: slate
+    primary: black
+    accent: cyan
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+
+nav:
+  - Home: index.md
+  - System Architecture:
+    - Overview & SID: architecture/system-overview.md
+  - Software:
+    - Topside Control Unit: software/topside.md
+    - Companion Computer: software/companion.md
+  - Firmware:
+    - Flight Controller: firmware/flight-controller.md
+    - Motor Mixing Matrix: firmware/motor-mixing.md
+  - Mechanical:
+    - Frame & Structure: mechanical/frame.md
+    - Manipulators & Tooling: mechanical/manipulators.md
+  - Electrical:
+    - Power Distribution: electrical/power.md
+    - Tether: electrical/tether.md
+  - Safety: safety.md
+  - Future Improvements: future.md

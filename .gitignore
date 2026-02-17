@@ -1,5 +1,58 @@
-*.bag
+# ==========================================
+# OVERFLOW ROBOTICS - MATE ROV .GITIGNORE
+# ==========================================
+
+# ------------------------------------------
+# 1. Machine Learning & Vision (YOLO/OpenCV)
+# ------------------------------------------
+# Ignore heavy model weights and training runs
 *.pt
+*.onnx
+*.weights
+runs/
+datasets/
+images/train/
+images/val/
+
+# ------------------------------------------
+# 2. Depth Data (Intel RealSense / ROS)
+# ------------------------------------------
+# NEVER commit bag files to GitHub!
+*.bag
+*.bag.active
+.ros/
+log/
+
+# ------------------------------------------
+# 3. Python Environment
+# ------------------------------------------
 __pycache__/
+*.py[cod]
+*$py.class
 venv/
 env/
+.env
+.venv/
+pip-log.txt
+
+# ------------------------------------------
+# 4. C++ & Firmware Build Files
+# ------------------------------------------
+# Ignore compiled binaries from ArduSub/ROS
+*.o
+*.elf
+*.bin
+*.hex
+build/
+devel/
+install/
+CMakeCache.txt
+
+# ------------------------------------------
+# 5. OS Junk & Editor Files
+# ------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

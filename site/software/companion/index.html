@@ -1,0 +1,1714 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Engineering Documentation for the MATE ROV Ranger Class">
+      
+      
+      
+        <link rel="canonical" href="https://overflowrobotics.com/software/companion/">
+      
+      
+        <link rel="prev" href="../topside/">
+      
+      
+        <link rel="next" href="../../firmware/flight-controller/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Companion Computer - Overflow Robotics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#companion-computer-jetson-orin-nano" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Overflow Robotics" class="md-header__button md-logo" aria-label="Overflow Robotics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Overflow Robotics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Companion Computer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/system-overview/" class="md-tabs__link">
+          
+  
+  
+  System Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../topside/" class="md-tabs__link">
+          
+  
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../firmware/flight-controller/" class="md-tabs__link">
+          
+  
+  
+  Firmware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mechanical/frame/" class="md-tabs__link">
+          
+  
+  
+  Mechanical
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../electrical/power/" class="md-tabs__link">
+          
+  
+  
+  Electrical
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../safety/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Safety
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../future/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Future Improvements
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Overflow Robotics" class="md-nav__button md-logo" aria-label="Overflow Robotics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Overflow Robotics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview & SID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topside/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topside Control Unit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Companion Computer
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Companion Computer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Specifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-pipeline-ustreamer-mjpeg-passthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video Pipeline — ustreamer MJPEG Passthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Video Pipeline — ustreamer MJPEG Passthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-stream-resource-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Stream Resource Cost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ustreamer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ustreamer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mavlink-routing-mavlink-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAVLink Routing — mavlink-router
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MAVLink Routing — mavlink-router">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realsense-recording-rs-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RealSense Recording — rs-record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jetson_clish-service-management-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jetson_cli.sh — Service Management CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jetson_cli.sh — Service Management CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Firmware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/flight-controller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flight Controller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/motor-mixing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motor Mixing Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mechanical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Mechanical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/frame/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frame & Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mechanical/manipulators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manipulators & Tooling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Electrical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Electrical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electrical/power/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Power Distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../electrical/tether/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tether
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../future/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Future Improvements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Specifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-pipeline-ustreamer-mjpeg-passthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video Pipeline — ustreamer MJPEG Passthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Video Pipeline — ustreamer MJPEG Passthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-stream-resource-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Stream Resource Cost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ustreamer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ustreamer Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mavlink-routing-mavlink-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAVLink Routing — mavlink-router
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MAVLink Routing — mavlink-router">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realsense-recording-rs-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RealSense Recording — rs-record
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jetson_clish-service-management-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jetson_cli.sh — Service Management CLI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jetson_cli.sh — Service Management CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="companion-computer-jetson-orin-nano">Companion Computer — Jetson Orin Nano</h1>
+<p>The companion computer is an <strong>NVIDIA Jetson Orin Nano</strong> mounted inside the ROV enclosure, running fully headless Ubuntu booted from an NVMe SSD. Its role is strictly limited to three functions: MAVLink relay, video passthrough, and depth recording. No AI inference or heavy compute runs on this node.</p>
+<hr />
+<h2 id="hardware-specifications">Hardware Specifications</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Board</strong></td>
+<td>NVIDIA Jetson Orin Nano Developer Kit</td>
+</tr>
+<tr>
+<td><strong>CPU</strong></td>
+<td>6-core Arm Cortex-A78AE</td>
+</tr>
+<tr>
+<td><strong>GPU</strong></td>
+<td>1024-core NVIDIA Ampere (unused for video)</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>8 GB LPDDR5</td>
+</tr>
+<tr>
+<td><strong>Boot Drive</strong></td>
+<td>NVMe SSD (also used for <code>.bag</code> data logging)</td>
+</tr>
+<tr>
+<td><strong>OS</strong></td>
+<td>Ubuntu (headless, no desktop environment)</td>
+</tr>
+<tr>
+<td><strong>Network</strong></td>
+<td>Gigabit Ethernet via tether to topside</td>
+</tr>
+</tbody>
+</table>
+<p>``</p>
+<hr />
+<h2 id="service-architecture">Service Architecture</h2>
+<p>All services are managed via <code>systemd</code> and controlled through <code>jetson_cli.sh</code>, a custom bash CLI wrapper.</p>
+<h3 id="service-inventory">Service Inventory</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Binary</th>
+<th>Function</th>
+<th>systemd Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mavlink-router</strong></td>
+<td><code>mavlink-routerd</code></td>
+<td>MAVLink relay: Cube Orange+ (serial) ↔ Topside (UDP)</td>
+<td><code>mavlink-router.service</code></td>
+</tr>
+<tr>
+<td><strong>ustreamer ×6</strong></td>
+<td><code>ustreamer</code></td>
+<td>MJPEG passthrough for 6 USB cameras</td>
+<td><code>ustreamer-cam{1..6}.service</code></td>
+</tr>
+<tr>
+<td><strong>rs-record</strong></td>
+<td><code>rs-record</code></td>
+<td>RealSense D435i depth recording to NVMe</td>
+<td><code>rs-record.service</code></td>
+</tr>
+</tbody>
+</table>
+<p>[INSERT DETAILS HERE: Exact systemd unit file names if different from above, any additional services running]</p>
+<hr />
+<h2 id="video-pipeline-ustreamer-mjpeg-passthrough">Video Pipeline — ustreamer MJPEG Passthrough</h2>
+<h3 id="problem">Problem</h3>
+<p>The Orin Nano <strong>lacks a hardware NVENC video encoder</strong>. Software-encoding 6 simultaneous camera feeds (e.g., H.264 via <code>ffmpeg</code>) would consume the entire CPU budget and introduce encoding latency.</p>
+<h3 id="solution">Solution</h3>
+<p>All 6 USB cameras are selected to output <strong>native MJPEG</strong> directly from their onboard ISPs. <code>ustreamer</code> operates in <strong>passthrough mode</strong> — it reads raw MJPEG frames from the camera's V4L2 device and serves them over HTTP without any transcoding.</p>
+<h3 id="per-stream-resource-cost">Per-Stream Resource Cost</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU per stream</strong></td>
+<td>&lt; 1% (no transcode)</td>
+</tr>
+<tr>
+<td><strong>Bandwidth per stream</strong></td>
+<td>[INSERT DETAILS HERE: Measured bandwidth per stream at operating resolution]</td>
+</tr>
+<tr>
+<td><strong>Total bandwidth (6 streams)</strong></td>
+<td>[INSERT DETAILS HERE: Aggregate measured bandwidth]</td>
+</tr>
+<tr>
+<td><strong>Latency contribution</strong></td>
+<td>~1 frame (capture-to-HTTP, no encode buffer)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ustreamer-configuration">ustreamer Configuration</h3>
+<p>Each camera instance runs with parameters:</p>
+<div class="highlight"><pre><span></span><code>ustreamer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device<span class="w"> </span>/dev/video<span class="o">{</span>N<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--port<span class="w"> </span><span class="m">808</span><span class="o">{</span>N<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--format<span class="w"> </span>MJPEG<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resolution<span class="w"> </span><span class="o">[</span>INSERT<span class="w"> </span>DETAILS<span class="w"> </span>HERE:<span class="w"> </span>resolution<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--desired-fps<span class="w"> </span><span class="o">[</span>INSERT<span class="w"> </span>DETAILS<span class="w"> </span>HERE:<span class="w"> </span>FPS<span class="o">]</span>
+</code></pre></div>
+<p>[INSERT DETAILS HERE: USB camera model/make, actual /dev/video device assignments, any udev rules for persistent naming]</p>
+<hr />
+<h2 id="mavlink-routing-mavlink-router">MAVLink Routing — mavlink-router</h2>
+<p><code>mavlink-router</code> bridges the Cube Orange+ flight controller (connected via serial UART) to the topside laptop (connected via Ethernet UDP).</p>
+<h3 id="configuration">Configuration</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[UartEndpoint flight_controller]</span>
+<span class="na">Device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/dev/ttyACM0</span>
+<span class="na">Baud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">115200</span>
+
+<span class="k">[UdpEndpoint topside]</span>
+<span class="na">Mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Normal</span>
+<span class="na">Address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[TOPSIDE_IP]</span>
+<span class="na">Port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">14550</span>
+</code></pre></div>
+<p>[INSERT DETAILS HERE: Actual serial device path, baud rate, topside IP address, any additional MAVLink endpoints]</p>
+<h3 id="design-rationale">Design Rationale</h3>
+<p>Running <code>mavlink-router</code> on the Jetson rather than a dedicated microcontroller provides:</p>
+<ul>
+<li><strong>Software-configurable routing</strong> — add/remove endpoints without hardware changes</li>
+<li><strong>Message filtering</strong> — can selectively forward/drop MAVLink message types</li>
+<li><strong>Logging</strong> — optional MAVLink <code>.tlog</code> capture for post-mission analysis</li>
+</ul>
+<hr />
+<h2 id="realsense-recording-rs-record">RealSense Recording — rs-record</h2>
+<p>The <strong>Intel RealSense D435i</strong> connects directly to the Jetson via USB 3.0. The <code>rs-record</code> utility captures synchronized RGB + depth frames into <code>.bag</code> files on the NVMe SSD.</p>
+<ul>
+<li><strong>Storage target:</strong> Local NVMe SSD (same drive as OS boot)</li>
+<li><strong>Retrieval:</strong> Post-mission via <code>pull_bag.sh</code> (SCP from topside)</li>
+<li><strong>Format:</strong> ROS <code>.bag</code> — compatible with <code>rosbag play</code> and <code>pyrealsense2</code> offline processing</li>
+</ul>
+<p>[INSERT DETAILS HERE: Recording resolution, depth stream FPS, RGB stream FPS, typical file size per minute of recording]</p>
+<hr />
+<h2 id="jetson_clish-service-management-cli">jetson_cli.sh — Service Management CLI</h2>
+<p>A custom bash wrapper providing a unified interface to start, stop, and monitor all Jetson services.</p>
+<h3 id="usage">Usage</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start all camera streams</span>
+./jetson_cli.sh<span class="w"> </span>cameras<span class="w"> </span>start
+
+<span class="c1"># Stop a specific camera</span>
+./jetson_cli.sh<span class="w"> </span>camera<span class="w"> </span><span class="m">3</span><span class="w"> </span>stop
+
+<span class="c1"># Start MAVLink routing</span>
+./jetson_cli.sh<span class="w"> </span>mavlink<span class="w"> </span>start
+
+<span class="c1"># Start RealSense recording</span>
+./jetson_cli.sh<span class="w"> </span>realsense<span class="w"> </span>start
+
+<span class="c1"># Check status of all services</span>
+./jetson_cli.sh<span class="w"> </span>status
+</code></pre></div>
+<p>[INSERT DETAILS HERE: Actual CLI syntax if different from above, any additional subcommands, error handling behavior]</p>
+<h3 id="design-rationale_1">Design Rationale</h3>
+<p>Wrapping <code>systemctl</code> commands behind a purpose-built CLI reduces operator error during time-critical pool runs. A single command replaces multiple <code>sudo systemctl start/stop/status</code> invocations and enforces correct service startup order.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
