@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GUI</title>
+<style>
+html, body {
+  margin:0; padding:0;
+  width:100%; height:100%;
+  background:#000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:#eee;
+  overflow:hidden;
+}
+#controls {
+  position:fixed; top:15px; left:15px; width:250px;
+  background: rgba(40,40,40,0.95); padding:15px; border-radius:12px;
+  font-size:14px; box-shadow:0 6px 20px rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px); border:1px solid rgba(200,200,200,0.2);
+  display:none; z-index:1000;
+}
+#controls strong { display:block; margin-bottom:12px; text-align:center; font-size:16px; color:#ccc; letter-spacing:1px; }
+#controls label { display:block; margin-bottom:10px; cursor:pointer; font-weight:bold; color:#ccc; }
+#controls label input[type=checkbox] { margin-right:8px; transform:scale(1.2); accent-color:#888; }
+#controls label:hover { color:#fff; }
+#controls-close { position:absolute; top:8px; right:10px; background:none; border:none; color:#eee; font-weight:bold; font-size:16px; cursor:pointer; }
+#controls-close:hover { color:#fff; }
+#controls-button { position:fixed; top:15px; left:15px; z-index:1001; background:#222; color:#eee; border:none; border-radius:8px; padding:10px 15px; cursor:pointer; font-weight:bold; box-shadow: 0 4px 12px rgba(0,0,0,0.4); transition: all 0.2s ease; }
+#controls-button:hover { background:#333; }
+
+.cam {
+  position:absolute; border-radius:12px; overflow:hidden; border:2px solid #222;
+  background: linear-gradient(145deg, #1a1a1a, #2b2b2b); box-shadow:0 12px 40px rgba(0,0,0,0.85);
+  cursor: grab; transition: all 0.18s ease; box-sizing: border-box;
+}
+.cam.resizing { transition: none; }
+.cam iframe { width:100%; height:100%; border:0; pointer-events:none; }
+.cam-name { position:absolute; bottom:5px; left:5px; font-size:12px; font-weight:bold; color:#ddd; text-shadow:0 0 3px rgba(0,0,0,0.7); pointer-events:none; opacity:0; transition: opacity 0.2s ease; z-index:10; }
+.cam:hover .cam-name { opacity:1; }
+.cam:hover { border-color: #444; }
+
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  z-index: 5;
+}
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 12px 12px;
+  border-color: transparent transparent #666 transparent;
+}
+
+.fullscreen { 
+  position:fixed !important; 
+  top:0 !important; 
+  left:0 !important; 
+  width:100% !important; 
+  height:100% !important; 
+  z-index:2000 !important; 
+  cursor:default !important;
+  border-radius: 0 !important;
+}
+
+#exit-fullscreen { position:fixed; top:10px; right:10px; z-index:2100; background:#222; color:#fff; border:none; border-radius:8px; padding:10px 15px; font-weight:bold; cursor:pointer; display:none; }
+#exit-fullscreen:hover { background:#333; }
+
+
+#landing-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+#landing-content {
+  text-align: center;
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#rov-image-wrap {
+  display:inline-block;
+  position:relative;
+  margin-bottom: 12px; 
+}
+
+#rov-image {
+  width: 400px;
+  height: 300px;
+  display:block;
+  position:relative;
+  z-index:1;
+  animation: float 3s ease-in-out infinite;
+}
+
+
+#rov-image-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(closest-side at 50% 0%, rgba(0,0,0,0.95), rgba(0,0,0,0.65) 40%, rgba(0,0,0,0) 100%);
+  filter: blur(18px);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+#landing-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  margin-bottom: 50px;
+  letter-spacing: 3px;
+}
+
+#landing-subtitle {
+  display: none;
+}
+
+#system-status {
+  display: none;
+}
+
+#start-button {
+  background: linear-gradient(135deg, #ffffff, #cccccc);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 20px 60px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+}
+
+#start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #9a9a9a, #ffffff);
+}
+
+#start-button:active {
+  transform: translateY(0px);
+}
+
+</style>
+</head>
+<body>
+
+
+<div id="landing-page">
+  <div id="landing-content">
+    
+    <img id="rov-image" src="C:\Users\Lenovo\Downloads\gui\WhatsApp Image 2026-02-06 at 7.07.47 PM.jpeg" alt="ROV">
+    <h1 id="landing-title">ROV Control System</h1>
+    <button id="start-button">START MISSION</button>
+  </div>
+</div>
+
+
+<div id="dashboard" style="display:none;">
+
+<button id="controls-button">Controls ⚙️</button>
+<div id="controls">
+  <button id="controls-close">✖</button>
+  <strong>Camera Controls</strong>
+  <label><input type="checkbox" checked data-cam="cam1"> Front Camera</label>
+  <label><input type="checkbox" checked data-cam="cam2"> Bottom Camera</label>
+  <label><input type="checkbox" checked data-cam="cam3"> Top Camera</label>
+  <label><input type="checkbox" checked data-cam="cam4"> Left Camera</label>
+  <label><input type="checkbox" checked data-cam="cam5"> Right Camera</label>
+  <label><input type="checkbox" checked data-cam="cam6"> Back Camera</label>
+</div>
+
+<div id="cams-container">
+  <div class="cam" id="cam1" data-grid-row="0" data-grid-col="0">
+    <div class="cam-name">Front</div>
+    <iframe src="http://192.168.137.47:8000/?action=stream"></iframe>
+    <div class="resize-handle"></div>
+  </div>
+  <div class="cam" id="cam2" data-grid-row="0" data-grid-col="1">
+    <div class="cam-name">Bottom</div>
+    <iframe src="http://192.168.137.47:8001/?action=stream"></iframe>
+    <div class="resize-handle"></div>
+  </div>
+  <div class="cam" id="cam3" data-grid-row="0" data-grid-col="2">
+    <div class="cam-name">Top</div>
+    <iframe src="http://192.168.137.47:8002/?action=stream"></iframe>
+    <div class="resize-handle"></div>
+  </div>
+  <div class="cam" id="cam4" data-grid-row="1" data-grid-col="0">
+    <div class="cam-name">Left</div>
+    <iframe src="http://192.168.137.47:8003/?action=stream"></iframe>
+    <div class="resize-handle"></div>
+  </div>
+  <div class="cam" id="cam5" data-grid-row="1" data-grid-col="1">
+    <div class="cam-name">Right</div>
+    <iframe src="http://192.168.137.47:8004/?action=stream"></iframe>
+    <div class="resize-handle"></div>
+  </div>
+  <div class="cam" id="cam6" data-grid-row="1" data-grid-col="2">
+    <div class="cam-name">Back</div>
+    <iframe src="http://192.168.137.47:8005/?action=stream"></iframe>
+    <div class="resize-handle"></div>
+  </div>
+</div>
+
+<button id="exit-fullscreen">✖ Exit Fullscreen</button>
+
+<script>
+
+document.getElementById('start-button').addEventListener('click', () => {
+  const landingPage = document.getElementById('landing-page');
+  const dashboard = document.getElementById('dashboard');
+  
+  landingPage.style.animation = 'fadeOut 0.5s ease';
+  
+  setTimeout(() => {
+    landingPage.style.display = 'none';
+    dashboard.style.display = 'block';
+    
+   
+    document.querySelectorAll('.cam').forEach(cam => {
+      cam.style.display = 'block';
+    });
+    
+    
+    document.querySelectorAll('#controls input[type=checkbox]').forEach(checkbox => {
+      checkbox.checked = true;
+    });
+    
+    recalculateGrid();
+  }, 500);
+});
+
+const MIN_WIDTH = 80;
+const MIN_HEIGHT = 60;
+const GAP = 2;
+let focusedCam = null;
+const camStates = {};
+let lastClickTime = 0;
+let lastClickCam = null;
+
+
+const customSizes = {
+  cam1: null,
+  cam2: null,
+  cam3: null,
+  cam4: null,
+  cam5: null,
+  cam6: null
+};
+
+
+const controlsBtn = document.getElementById('controls-button');
+const controlsPanel = document.getElementById('controls');
+const controlsClose = document.getElementById('controls-close');
+controlsBtn.addEventListener('click', ()=>{ controlsPanel.style.display='block'; controlsBtn.style.display='none'; });
+controlsClose.addEventListener('click', ()=>{ controlsPanel.style.display='none'; controlsBtn.style.display='block'; });
+
+
+document.querySelectorAll('#controls input[type=checkbox]').forEach(box=>{
+  box.addEventListener('change', e=>{
+    const camId = e.target.getAttribute('data-cam');
+    const cam = document.getElementById(camId);
+    cam.style.display = e.target.checked ? 'block' : 'none';
+    recalculateGrid();
+  });
+});
+
+function recalculateGrid() {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  
+
+  const visibleCams = Array.from(document.querySelectorAll('.cam')).filter(
+    cam => cam.style.display !== 'none' && !cam.classList.contains('fullscreen')
+  );
+  
+  if (visibleCams.length === 0) return;
+  
+ 
+  const rows = {};
+  visibleCams.forEach(cam => {
+    const row = parseInt(cam.getAttribute('data-grid-row'));
+    if (!rows[row]) rows[row] = [];
+    rows[row].push(cam);
+  });
+  
+  const rowNumbers = Object.keys(rows).map(Number).sort();
+  const numRows = rowNumbers.length;
+  
+  
+  const totalHeight = viewportHeight - (GAP * (numRows + 1));
+  let remainingHeight = totalHeight;
+  const rowHeights = {};
+  
+  
+  rowNumbers.forEach((rowNum, idx) => {
+    const camsInRow = rows[rowNum];
+    let maxCustomHeight = 0;
+    
+    camsInRow.forEach(cam => {
+      const customSize = customSizes[cam.id];
+      if (customSize && customSize.height > maxCustomHeight) {
+        maxCustomHeight = customSize.height;
+      }
+    });
+    
+    if (maxCustomHeight > 0) {
+      rowHeights[rowNum] = Math.min(maxCustomHeight, remainingHeight);
+      remainingHeight -= rowHeights[rowNum];
+    }
+  });
+  
+  
+  const rowsWithoutCustom = rowNumbers.filter(r => !rowHeights[r]);
+  const heightPerRow = rowsWithoutCustom.length > 0 ? remainingHeight / rowsWithoutCustom.length : 0;
+  rowsWithoutCustom.forEach(r => {
+    rowHeights[r] = heightPerRow;
+  });
+  
+  
+  let currentY = GAP;
+  rowNumbers.forEach(rowNum => {
+    const camsInRow = rows[rowNum];
+    const rowHeight = rowHeights[rowNum];
+    
+    
+    const numCols = camsInRow.length;
+    const totalWidth = viewportWidth - (GAP * (numCols + 1));
+    let remainingWidth = totalWidth;
+    const camWidths = {};
+    
+    
+    camsInRow.forEach(cam => {
+      const customSize = customSizes[cam.id];
+      if (customSize && customSize.width) {
+        camWidths[cam.id] = Math.min(customSize.width, remainingWidth);
+        remainingWidth -= camWidths[cam.id];
+      }
+    });
+    
+    
+    const camsWithoutCustom = camsInRow.filter(cam => !camWidths[cam.id]);
+    const widthPerCam = camsWithoutCustom.length > 0 ? remainingWidth / camsWithoutCustom.length : 0;
+    camsWithoutCustom.forEach(cam => {
+      camWidths[cam.id] = widthPerCam;
+    });
+    
+    
+    let currentX = GAP;
+    camsInRow.sort((a, b) => {
+      return parseInt(a.getAttribute('data-grid-col')) - parseInt(b.getAttribute('data-grid-col'));
+    });
+    
+    camsInRow.forEach(cam => {
+      cam.style.left = currentX + 'px';
+      cam.style.top = currentY + 'px';
+      cam.style.width = camWidths[cam.id] + 'px';
+      cam.style.height = rowHeight + 'px';
+      currentX += camWidths[cam.id] + GAP;
+    });
+    
+    currentY += rowHeight + GAP;
+  });
+}
+
+
+recalculateGrid();
+
+
+window.addEventListener('resize', () => {
+  if (!focusedCam) {
+    recalculateGrid();
+  }
+});
+
+
+document.querySelectorAll('.cam').forEach(cam => {
+  let isDragging = false;
+  let isResizing = false;
+  let startX = 0, startY = 0;
+  let startWidth = 0, startHeight = 0;
+  let startLeft = 0, startTop = 0;
+
+  const resizeHandle = cam.querySelector('.resize-handle');
+
+ 
+  cam.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    if (e.target.classList.contains('resize-handle')) return;
+    if (cam.classList.contains('fullscreen')) return;
+    
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    const rect = cam.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop = rect.top;
+    cam.style.cursor = 'grabbing';
+    cam.style.zIndex = 1000;
+    e.preventDefault();
+  });
+
+  
+  resizeHandle.addEventListener('mousedown', e => {
+    if (e.button !== 0) return;
+    if (cam.classList.contains('fullscreen')) return;
+    
+    isResizing = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startWidth = cam.offsetWidth;
+    startHeight = cam.offsetHeight;
+    cam.style.zIndex = 1000;
+    cam.classList.add('resizing');
+    e.stopPropagation();
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (isDragging) {
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      let newLeft = startLeft + dx;
+      let newTop = startTop + dy;
+      
+      
+      newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - cam.offsetWidth));
+      newTop = Math.max(0, Math.min(newTop, window.innerHeight - cam.offsetHeight));
+      
+      cam.style.left = newLeft + 'px';
+      cam.style.top = newTop + 'px';
+    }
+    
+    if (isResizing) {
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      let newWidth = Math.max(20, startWidth + dx);
+      let newHeight = Math.max(20, startHeight + dy);
+      
+      
+      customSizes[cam.id] = {
+        width: newWidth,
+        height: newHeight
+      };
+      
+      
+      recalculateGrid();
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      cam.style.cursor = 'grab';
+      cam.style.zIndex = 1;
+    }
+    if (isResizing) {
+      isResizing = false;
+      cam.style.zIndex = 1;
+      cam.classList.remove('resizing');
+    }
+  });
+
+  cam.addEventListener('click', e => {
+    if (isResizing || isDragging) return;
+    if (e.target.classList.contains('resize-handle')) return;
+    
+    const now = Date.now();
+    const DOUBLE_CLICK_THRESHOLD = 300;
+    
+    if (lastClickCam === cam && (now - lastClickTime) < DOUBLE_CLICK_THRESHOLD) {
+      lastClickTime = 0;
+      lastClickCam = null;
+      
+      if (focusedCam) {
+        exitFullscreen();
+      } else {
+        enterFullscreen(cam);
+      }
+    } else {
+      lastClickTime = now;
+      lastClickCam = cam;
+    }
+  });
+});
+
+function enterFullscreen(cam) {
+  focusedCam = cam;
+  
+  document.querySelectorAll('.cam').forEach(c => {
+    camStates[c.id] = {
+      width: c.style.width,
+      height: c.style.height,
+      top: c.style.top,
+      left: c.style.left,
+      zIndex: c.style.zIndex,
+      display: c.style.display
+    };
+  });
+  
+  cam.classList.add('fullscreen');
+  document.getElementById('exit-fullscreen').style.display = 'block';
+}
+
+function exitFullscreen() {
+  if (!focusedCam) return;
+  
+  focusedCam.classList.remove('fullscreen');
+  document.getElementById('exit-fullscreen').style.display = 'none';
+  
+  document.querySelectorAll('.cam').forEach(c => {
+    const state = camStates[c.id];
+    if (state) {
+      c.style.width = state.width;
+      c.style.height = state.height;
+      c.style.top = state.top;
+      c.style.left = state.left;
+      c.style.zIndex = state.zIndex;
+      c.style.display = state.display;
+    }
+  });
+  
+  focusedCam = null;
+}
+
+document.getElementById('exit-fullscreen').addEventListener('click', exitFullscreen);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && focusedCam) {
+    exitFullscreen();
+  }
+});
+
+
+function checkCameraSizes() {
+  document.querySelectorAll('.cam').forEach(cam => {
+    if (cam.classList.contains('fullscreen')) return;
+    if (cam.style.display === 'none') return;
+    
+    const width = cam.offsetWidth;
+    const height = cam.offsetHeight;
+    
+    if (width < MIN_WIDTH || height < MIN_HEIGHT) {
+      cam.style.display = 'none';
+      const checkbox = document.querySelector(`#controls input[data-cam="${cam.id}"]`);
+      if (checkbox) checkbox.checked = false;
+      customSizes[cam.id] = null; 
+      recalculateGrid();
+    }
+  });
+}
+
+setInterval(checkCameraSizes, 100);
+
+document.addEventListener('mouseup', () => {
+  setTimeout(checkCameraSizes, 50);
+});
+</script>
+
+</div>
+
+
+</body>
+</html>
