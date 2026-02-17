@@ -23,5 +23,5 @@ Our software stack is divided into three distinct operational domains:
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/YOUR_ORG/rov.git](https://github.com/YOUR_ORG/rov.git)
+git clone https://github.com/Enderboy2/rov.git
 cd rov
