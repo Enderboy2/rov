@@ -51,13 +51,13 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 ## Lockout / Tagout (LOTO)
 
-[INSERT DETAILS HERE: Power isolation procedure before any physical work on the ROV — who controls the power supply, how the vehicle is verified de-energized before maintenance]
+Prior to any physical maintenance or inspection of the ROV, the power supply must be fully disconnected and verified de-energized by the designated electrical lead. The main XT-60 input connector is physically unplugged from the power distribution board, and all team members are notified before any work begins. No maintenance is permitted on the vehicle while it remains connected to the surface power supply.
 
 ---
 
 ## Personal Protective Equipment (PPE)
 
-[INSERT DETAILS HERE: Required PPE for team members during pool operations — safety glasses, closed-toe shoes, gloves for handling batteries, etc.]
+Personal protective equipment such as goggles, gloves, closed-toe shoes, and additional situational PPE is mandatory when required. Equipment is handled only under the guidance of trained personnel, and all operations follow established safety checklists, job safety analyses, and emergency procedures.
 
 ---
 
