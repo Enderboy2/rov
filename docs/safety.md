@@ -65,7 +65,7 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 | Feature | Implementation |
 |---|---|
-| **Software kill switch** | [INSERT DETAILS HERE: QGC disarm button, joystick button binding] |
+| **Software kill switch** | The software kill switch is implemented through the Disarm function in QGroundControl using the MAVLink protocol. An emergency disarm command is also mapped to the PS4 joystick connected to the topside laptop. MAVLink Router running on the NVIDIA Jetson Orin Nano Super forwards commands to the Cube Orange, which immediately cuts all thruster outputs upon disarm. Kill-switch functionality is verified before each deployment by arming and immediately disarming the system to confirm motor shutdown. |
 | **Hardware kill switch** | [INSERT DETAILS HERE: Physical switch location, wiring] |
 | **Fuse protection** | [INSERT DETAILS HERE: Fuse rating, location in power path] |
 | **Leak detection** | [INSERT DETAILS HERE: Leak sensor model, alarm behavior] |
