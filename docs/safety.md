@@ -66,8 +66,8 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 | Feature | Implementation |
 |---|---|
 | **Software kill switch** | Disarm function in QGroundControl using the MAVLink protocol. Emergency disarm mapped to PS4 joystick on the topside laptop. MAVLink Router on the NVIDIA Jetson Orin Nano Super forwards commands to the Cube Orange, which immediately cuts all thruster outputs upon disarm. Verified before each deployment by arming and immediately disarming to confirm motor shutdown. |
-| **Hardware kill switch** | [INSERT DETAILS HERE: Physical switch location, wiring] |
-| **Fuse protection** | [INSERT DETAILS HERE: Fuse rating, location in power path] |
+| **Hardware kill switch** | The fuse system acts as the hardware kill switch — cuts power from the entire system automatically on overcurrent or fault |
+| **Fuse protection** | 25S Clear Fuse at the start of the tether (main power input). 10A at each motor (×8) to protect individual thrusters from overcurrent |
 | **Leak detection** | [INSERT DETAILS HERE: Leak sensor model, alarm behavior] |
 | **Positive buoyancy** | [INSERT DETAILS HERE: Does the ROV float if power is lost?] |
 | **Thruster guards** | [INSERT DETAILS HERE: Guard material, coverage] |
