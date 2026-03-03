@@ -52,7 +52,6 @@ Running inference topside rather than on the Jetson eliminates GPU contention on
 Model Variant: YOLOv8n (nano)  
 Training Dataset: ~150 labeled images (2 classes: european green crab, distractor)  
 Validation Performance: mAP@0.5 = 99.5%, Precision = 85.6%, Recall = 100%  
-Checkpoint: crab-detection-iqurg/4 (latest version: crab-detection-iqurg/5)  
 Inference Performance: (FPS/latency pending)
 ``
 
