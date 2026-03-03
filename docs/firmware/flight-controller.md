@@ -75,7 +75,6 @@ Thrusters
 | **Stabilize** | Attitude hold on roll/pitch, manual yaw/throttle |
 | **Depth Hold** | Stabilize + barometric depth lock |
 
-[INSERT DETAILS HERE: PID gain values (P, I, D) for roll, pitch, yaw, and depth hold; any custom tuning methodology used]
 
 ---
 
