@@ -52,7 +52,7 @@ Running inference topside rather than on the Jetson eliminates GPU contention on
 Model Variant: YOLOv8n (nano)  
 Training Dataset: ~150 labeled images (2 classes: european green crab, distractor)  
 Validation Performance: mAP@0.5 = 99.5%, Precision = 85.6%, Recall = 100%  
-Inference Performance: (FPS/latency pending)
+Inference Performance: Measured at 15 FPS model throughput, with inference latency averaging 10–20 ms per frame and total end-to-end system latency ranging from 50–75 ms from capture to rendered detection overlay.
 ``
 
 ---
