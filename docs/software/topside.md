@@ -49,10 +49,10 @@ The topside runs **YOLOv8** (Ultralytics) for competition-specific object detect
 
 Running inference topside rather than on the Jetson eliminates GPU contention on the companion computer. The Jetson's sole video responsibility is MJPEG passthrough, and inference latency is absorbed by the topside's higher compute budget.
 
-Model Variant: YOLOv8n (nano)
-Training Dataset: ~150 labeled images (2 classes: european green crab, distractor)
-Validation Performance: mAP@0.5 = 99.5%, Precision = 85.6%, Recall = 100%
-Checkpoint: crab-detection-iqurg/4 (latest version: crab-detection-iqurg/5)
+Model Variant: YOLOv8n (nano)  
+Training Dataset: ~150 labeled images (2 classes: european green crab, distractor)  
+Validation Performance: mAP@0.5 = 99.5%, Precision = 85.6%, Recall = 100%  
+Checkpoint: crab-detection-iqurg/4 (latest version: crab-detection-iqurg/5)  
 Inference Performance: (FPS/latency pending)
 ``
 
