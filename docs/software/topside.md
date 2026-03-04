@@ -49,11 +49,10 @@ The topside runs **YOLOv8** (Ultralytics) for competition-specific object detect
 
 Running inference topside rather than on the Jetson eliminates GPU contention on the companion computer. The Jetson's sole video responsibility is MJPEG passthrough, and inference latency is absorbed by the topside's higher compute budget.
 
-Model Variant: YOLOv8n (nano)  
-Training Dataset: ~150 labeled images (2 classes: european green crab, distractor)  
-Validation Performance: mAP@0.5 = 99.5%, Precision = 85.6%, Recall = 100%  
-Inference Performance: Measured at 15 FPS model throughput, with inference latency averaging 10–20 ms per frame and total end-to-end system latency ranging from 50–75 ms from capture to rendered detection overlay.
-``
+- **Model Variant:** YOLOv8n (nano)  
+- **Training Dataset:** ~150 labeled images (2 classes: european green crab, distractor)  
+- **Validation Performance:** mAP@0.5 = 99.5%, Precision = 85.6%, Recall = 100%  
+- **Inference Performance:** Measured at 15 FPS model throughput, with inference latency averaging 10–20 ms per frame and total end-to-end system latency ranging from 50–75 ms from capture to rendered detection overlay.
 
 ---
 
