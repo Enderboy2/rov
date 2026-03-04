@@ -68,7 +68,7 @@ Personal protective equipment such as goggles, gloves, closed-toe shoes, and add
 | **Software kill switch** | Disarm function in QGroundControl using the MAVLink protocol. Emergency disarm mapped to PS4 joystick on the topside laptop. MAVLink Router on the NVIDIA Jetson Orin Nano Super forwards commands to the Cube Orange, which immediately cuts all thruster outputs upon disarm. Verified before each deployment by arming and immediately disarming to confirm motor shutdown. |
 | **Hardware kill switch** | The fuse system acts as the hardware kill switch — cuts power from the entire system automatically on overcurrent or fault. |
 | **Fuse protection** | 25A Clear Fuse at the start of the tether (main power input). 10A at each motor (×8) to protect individual thrusters from overcurrent. |
-| **Leak detection** | [INSERT DETAILS HERE: Leak sensor model, alarm behavior] |
+| **Leak detection** | Currently in progress. The leak sensor model and corresponding alarm behavior will be specified and integrated at a later stage. |
 | **Positive buoyancy** | In the event of a power interruption, the ROV will automatically ascend to the surface due to its positive buoyancy. |
 | **Thruster guards** | Our U2 thrusters are equipped with full circular guard rings reinforced by radial struts, effectively preventing small objects or fingers from contacting the propellers. |
 
