@@ -70,6 +70,5 @@ Personal protective equipment such as goggles, gloves, closed-toe shoes, and add
 | **Fuse protection** | 25A Clear Fuse at the start of the tether (main power input). 10A at each motor (×8) to protect individual thrusters from overcurrent. |
 | **Leak detection** | [INSERT DETAILS HERE: Leak sensor model, alarm behavior] |
 | **Positive buoyancy** | [INSERT DETAILS HERE: Does the ROV float if power is lost?] |
-| **Thruster guards** | [INSERT DETAILS HERE: Guard material, coverage] |
+| **Thruster guards** | All eight ApisQueen U2 thrusters are fully shrouded by their factory-integrated guard design. Thrusters are software-limited to 3 A maximum per unit to prevent electrical overload and excessive current draw. Frame edges are rounded and deburred to eliminate sharp exposure hazards. |
 
-``
