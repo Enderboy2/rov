@@ -25,8 +25,6 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 | 11 | Tether slack managed — no loops or kinks | Tether Handler — Moez Eldin Khaled|
 | 12 | Pool area clear of obstructions and personnel in water | Station Leader — Yassin Sharkas |
 
-[INSERT DETAILS HERE: Any additional team-specific safety checks]
-
 ---
 
 ## Emergency Procedures
@@ -41,7 +39,7 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 ### Electrical Fault
 
-[INSERT DETAILS HERE: Overcurrent behavior, fuse blow procedure, manual kill switch location and operation]
+The fuse system acts as the hardware kill switch, automatically cutting power on overcurrent or faults. Diodes prevent back current from motors spinning backward, protecting electronics, and capacitors at each camera stabilize voltage to prevent glitches during drops. The Hardware CTO ensures proper fuse ratings, diode placement, and capacitor protection for safe operation.
 
 ### Entanglement
 
