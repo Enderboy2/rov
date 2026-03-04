@@ -69,6 +69,6 @@ Personal protective equipment such as goggles, gloves, closed-toe shoes, and add
 | **Hardware kill switch** | The fuse system acts as the hardware kill switch — cuts power from the entire system automatically on overcurrent or fault. |
 | **Fuse protection** | 25A Clear Fuse at the start of the tether (main power input). 10A at each motor (×8) to protect individual thrusters from overcurrent. |
 | **Leak detection** | [INSERT DETAILS HERE: Leak sensor model, alarm behavior] |
-| **Positive buoyancy** | In case of power interruption, the ROV floats to the surface on its own as it is positively buoyant. |
-| **Thruster guards** | Our U2 thrusters are equipped with full circular gaurd rings with radial struts, blocking small objects and or fingers. |
+| **Positive buoyancy** | In the event of a power interruption, the ROV will automatically ascend to the surface due to its positive buoyancy. |
+| **Thruster guards** | Our U2 thrusters are equipped with full circular guard rings reinforced by radial struts, effectively preventing small objects or fingers from contacting the propellers. |
 
