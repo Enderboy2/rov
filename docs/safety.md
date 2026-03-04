@@ -39,7 +39,7 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 ### Electrical Fault
 
-The fuse system acts as the hardware kill switch, automatically cutting power on overcurrent or faults. Diodes prevent back current from motors spinning backward, protecting electronics, and capacitors at each camera stabilize voltage to prevent glitches during drops. The Hardware CTO ensures proper fuse ratings, diode placement, and capacitor protection for safe operation.
+The fuse system acts as the hardware kill switch, automatically cutting power on overcurrent or faults. Diodes prevent back current when motors spin unexpectedly, protecting electronics, and capacitors at each camera stabilize voltage to prevent glitches during drops. The Hardware CTO ensures proper fuse ratings, diode placement, and capacitor protection for safe operation.
 
 ### Entanglement
 
