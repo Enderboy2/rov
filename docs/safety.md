@@ -12,18 +12,18 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 | # | Check | Verified By |
 |---|---|---|
-| 1 | All enclosure seals inspected — no visible O-ring damage or debris | [INSERT DETAILS HERE] |
-| 2 | Tether connections secure at both ROV and topside ends | [INSERT DETAILS HERE] |
-| 3 | Power supply fuse correctly rated and installed | [INSERT DETAILS HERE] |
-| 4 | ESCs initialized — no audible alarm tones | [INSERT DETAILS HERE] |
-| 5 | Cube Orange+ booted — QGC telemetry link established | [INSERT DETAILS HERE] |
-| 6 | Jetson Orin Nano booted — SSH accessible from topside | [INSERT DETAILS HERE] |
-| 7 | All 6 camera feeds visible on dashboard | [INSERT DETAILS HERE] |
-| 8 | Motor test completed via QGC — all 8 thrusters spin correct direction | [INSERT DETAILS HERE] |
-| 9 | Depth hold mode tested (dry) — barometer responding | [INSERT DETAILS HERE] |
-| 10 | Kill switch functional — verified by arming then immediately killing | [INSERT DETAILS HERE] |
-| 11 | Tether slack managed — no loops or kinks | [INSERT DETAILS HERE] |
-| 12 | Pool area clear of obstructions and personnel in water | [INSERT DETAILS HERE] |
+| 1 | All enclosure seals inspected — no visible O-ring damage or debris | Tether Handler — Moez Eldin Khaled |
+| 2 | Tether connections secure at both ROV and topside ends | Tether Handler — Moez Eldin Khaled |
+| 3 | Power supply fuse correctly rated and installed | Co-Pilot — Omar Helal |
+| 4 | ESCs initialized — no audible alarm tones | Co-Pilot — Omar Helal |
+| 5 | Cube Orange+ booted — QGC telemetry link established | Co-Pilot — Omar Helal |
+| 6 | Jetson Orin Nano booted — SSH accessible from topside | Co-Pilot — Omar Helal |
+| 7 | All 6 camera feeds visible on dashboard | Pilot — Baraa Gomaa |
+| 8 | Motor test completed via QGC — all 8 thrusters spin correct direction | Co-Pilot — Omar Helal |
+| 9 | Depth hold mode tested (dry) — barometer responding | Co-Pilot — Omar Helal |
+| 10 | Kill switch functional — verified by arming then immediately killing | Co-Pilot — Omar Helal |
+| 11 | Tether slack managed — no loops or kinks | Tether Handler — Moez Eldin Khaled|
+| 12 | Pool area clear of obstructions and personnel in water | Station Leader — Yassin Sharkas |
 
 [INSERT DETAILS HERE: Any additional team-specific safety checks]
 
@@ -45,7 +45,7 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 ### Entanglement
 
-[INSERT DETAILS HERE: Tether entanglement response — pilot procedure, tether management role responsibilities]
+If the tether becomes entangled, the tether handler immediately notifies the station leader, who then informs the pilot. The pilot will then take the appropriate action to safely free the ROV or adjust its movement.
 
 ---
 
