@@ -33,10 +33,6 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 [INSERT DETAILS HERE: Procedure when MAVLink link drops — does the ROV auto-disarm? Does the pilot surface the vehicle manually? Timeout thresholds]
 
-### Water Ingress
-
-[INSERT DETAILS HERE: Visual indicators of water ingress (e.g., condensation on camera, erratic IMU readings), immediate response protocol, power cutoff procedure]
-
 ### Electrical Fault
 
 The fuse system acts as the hardware kill switch, automatically cutting power on overcurrent or faults. Diodes prevent back current when motors spin unexpectedly, protecting electronics, and capacitors at each camera stabilize voltage to prevent glitches during drops.
