@@ -122,4 +122,21 @@ int16_t calc_thrust_to_pwm(float thrust_in) {
 - **Full reverse:** `pwm_min` µs
 - **Asymmetric scaling:** Accounts for ESCs with different forward/reverse deadbands
 
-[INSERT DETAILS HERE: ESC model, PWM range (min/max µs), thruster model and specs (thrust curve, max thrust in kgf)]
+**ESC Model:** Blue Robotics Basic ESC (BESC30-R3)  
+**Voltage Range:** 7-26 V (2S-6S LiPo)  
+**Maximum Current:** 30 A  
+**PWM Range:**  
+* Minimum: 1100 µs  
+* Neutral: 1500 µs  
+* Maximum: 1900 µs  
+**Signal Input Voltage:** 3.3-5 V  
+**PWM Update Rate:** up to 400 Hz  
+**Directionality:** Bidirectional (center is zero thrust)  
+
+**Thruster Model:** APISQUEEN U2 Mini  
+**Operating Voltage:** 12-16 V  
+**Maximum Power:** 130 W  
+**Maximum Current:** ~8 A  
+**Maximum Thrust:** ~1.3 kgf  
+**Thrust Curve:** Nonlinear (approximately quadratic)   
+**Physical Size:** 95.8 x 77 mm  
