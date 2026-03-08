@@ -76,8 +76,6 @@ The split-processing model eliminates both by distributing workloads across thre
 
 ## System Interconnect Diagram (SID)
 
-``
-
 ### Data Flow Summary
 
 Pilot Input (Joystick)
