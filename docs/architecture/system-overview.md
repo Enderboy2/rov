@@ -6,8 +6,6 @@ title: System Architecture
 
 Encore employs a **3-Tier Distributed Split-Processing Architecture** over an Ethernet tether. Each tier is purpose-scoped to prevent CPU bottlenecking and minimize tether latency. No single node performs both real-time control and heavy compute.
 
-``
-
 ---
 
 ## Design Rationale
@@ -82,7 +80,6 @@ The split-processing model eliminates both by distributing workloads across thre
 
 ### Data Flow Summary
 
-```
 Pilot Input (Joystick)
   → QGroundControl (Topside)
     → MAVLink over Ethernet Tether
@@ -104,7 +101,6 @@ YOLOv8 AI Inference
   → HTTP pull of MJPEG stream from Jetson
     → YOLOv8 model (Topside GPU/CPU)
       → Crab detection overlay
-```
 
 ---
 
@@ -117,8 +113,6 @@ YOLOv8 AI Inference
 | Cameras ↔ Jetson | USB 2.0/3.0 | Internal USB hub |
 | RealSense ↔ Jetson | USB 3.0 | Direct connect |
 
-``
-
 ---
 
 ## Latency Budget
@@ -129,5 +123,3 @@ YOLOv8 AI Inference
 | Camera → Dashboard display | < 150 ms (MJPEG passthrough, no transcode) |
 | RealSense recording | 0 ms network (local NVMe write) |
 | `.bag` file retrieval | Non-real-time (SCP batch transfer post-mission) |
-
-[INSERT DETAILS HERE: Measured latency values from pool testing to replace estimates]
