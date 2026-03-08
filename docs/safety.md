@@ -31,7 +31,7 @@ Safety is a core judging criterion in the MATE ROV competition. All procedures d
 
 ### Loss of Communication
 
-[INSERT DETAILS HERE: Procedure when MAVLink link drops — does the ROV auto-disarm? Does the pilot surface the vehicle manually? Timeout thresholds]
+If the MAVLink link is lost, the system immediately cuts power to the ROV and performs a full reboot to reset onboard controllers and restore communication with the surface station.
 
 ### Electrical Fault
 
