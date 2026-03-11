@@ -92,8 +92,6 @@ A **vanilla HTML/JS/CSS** web page served locally on the topside laptop. Display
 
 [INSERT DETAILS HERE: Camera resolution per feed, dashboard screenshot, grid layout dimensions]
 
-``
-
 ---
 
 ## RealSense Distance Measurement — `pull_bag.sh`
@@ -114,4 +112,4 @@ Live-streaming depth data over the tether would consume significant bandwidth an
 - **Repeatable measurements** (replay the `.bag` file multiple times)
 - **Zero tether bandwidth cost** during the mission run
 
-[INSERT DETAILS HERE: RealSense D435i firmware version, recording resolution and FPS, typical .bag file size per minute, measurement accuracy observed in testing]
+The Intel RealSense D435i records RGB video along with depth data for every pixel in the frame. The camera computes 3D spatial coordinates (X, Y, Z), obtaining the Z value using its infrared (IR) sensor and stereo cameras, where Z represents the distance from the camera to the observed object. This allows the system to determine the real-world distance between any two operator-selected points in the scene.
