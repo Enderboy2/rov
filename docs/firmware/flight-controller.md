@@ -106,9 +106,9 @@ The firmware was then compiled using the `ArduPilot waf build toolchain` and fla
 
 ### Flash Procedure
 
-* Connect the `Cube Orange+` to a laptop using a **Micro-USB cable**.
-* Open `Mission Planner`.
-* Go to **Initial Setup → Install Firmware**.
-* Select **Load Custom Firmware** and choose the compiled firmware file (`.apj`).
-* The firmware flashes to the `Cube Orange+` in a few seconds.
-* After flashing completes, the controller **automatically reboots**.
+1. Connect the `Cube Orange+` to a laptop using a **Micro-USB cable**.
+2. Open `Mission Planner`.
+3. Go to **Initial Setup → Install Firmware**.
+3. Select **Load Custom Firmware** and choose the compiled firmware file (`.apj`).
+4. The firmware flashes to the `Cube Orange+` in a few seconds.
+5. After flashing completes, the controller **automatically reboots**.
