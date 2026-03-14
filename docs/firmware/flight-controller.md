@@ -90,3 +90,25 @@ QGroundControl parameter files are version-controlled in `firmware/qgc_params/` 
 **Target recovery time:** < 60 seconds from bare hardware to flight-ready configuration.
 
 ### ArduSub Version and Build Details
+
+Custom firmware was built from the open-source `ArduSub` codebase within the `ArduPilot` repository.
+
+Base firmware version: **ArduSub vX.X.X**  
+Source reference: **ArduPilot commit XXXXXXX**
+
+When configuring the `Cube Orange+` in `QGroundControl` or `Mission Planner`, only predefined frame configurations are available. Because our ROV uses a different thruster layout, a new configuration had to be created.
+
+The team downloaded the open-source firmware and implemented a new frame configuration following the same structure used in existing configurations. To define the motor mixing, the software team coordinated with the mechanical team to determine how each thruster contributes to the vehicle’s six degrees of freedom (surge, sway, heave, roll, pitch, yaw).
+
+The mechanical team specified which motors should activate for each movement, the required thrust percentage (for example 60% or 100%), and the direction of contribution (positive or negative). Based on this information, the motor mixing logic in `AP_Motors6DOF.cpp` was modified to match the ROV’s thruster layout.
+
+The firmware was then compiled using the `ArduPilot waf build toolchain` and flashed to the `Cube Orange+`.
+
+### Flash Procedure
+
+* Connect the `Cube Orange+` to a laptop using a **Micro-USB cable**.
+* Open `Mission Planner`.
+* Go to **Initial Setup → Install Firmware**.
+* Select **Load Custom Firmware** and choose the compiled firmware file (`.apj`).
+* The firmware flashes to the `Cube Orange+` in a few seconds.
+* After flashing completes, the controller **automatically reboots**.
