@@ -52,8 +52,6 @@ Stock ArduSub frame types assume planar thruster arrangements (e.g., BlueROV2's 
 
 ### Thruster Geometry
 
-``
-
 The 8 thrusters are arranged in **vertically mirrored pairs** — each top motor has a corresponding bottom motor at the same X/Y position but with inverted throttle polarity. This geometry provides:
 
 - **Full 6-DOF control:** Independent authority over roll, pitch, yaw, heave, surge, and sway
