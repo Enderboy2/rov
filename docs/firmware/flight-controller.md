@@ -21,8 +21,6 @@ The flight controller is a **Cube Orange+** (STM32H7 dual-core Cortex-M7) runnin
 | **PWM Outputs** | 8 channels → ESCs → Thrusters |
 | **Serial** | UART to Jetson Orin Nano (MAVLink) |
 
-``
-
 ---
 
 ## Firmware Modifications
