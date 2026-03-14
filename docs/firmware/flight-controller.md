@@ -89,4 +89,4 @@ QGroundControl parameter files are version-controlled in `firmware/qgc_params/` 
 
 **Target recovery time:** < 60 seconds from bare hardware to flight-ready configuration.
 
-# ArduSub Version and Build Details
+### ArduSub Version and Build Details
