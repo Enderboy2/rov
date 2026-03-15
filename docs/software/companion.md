@@ -114,7 +114,8 @@ The **Intel RealSense D435i** connects directly to the Jetson via USB 3.0. The `
 - **Retrieval:** Post-mission via `pull_bag.sh` (SCP from topside)
 - **Format:** ROS `.bag` — compatible with `rosbag play` and `pyrealsense2` offline processing
 
-[INSERT DETAILS HERE: Recording resolution, depth stream FPS, RGB stream FPS, typical file size per minute of recording]
+**Recording resolution:** 1920 × 1080 (RGB, 30 FPS); 1280 × 720 (stereo depth, 90 FPS).
+**Typical file size per minute of recording:** ~400 MB – 5 GB, depending on resolution and frame rate.
 
 ---
 
