@@ -91,8 +91,7 @@ QGroundControl parameter files are version-controlled in `firmware/qgc_params/` 
 
 Custom firmware was built from the open-source `ArduSub` codebase within the `ArduPilot` repository.
 
-Base firmware version: **ArduSub vX.X.X**  
-Source reference: **ArduPilot commit XXXXXXX**
+Base firmware version: **ArduSub v4.0.3**  
 
 When configuring the `Cube Orange+` in `QGroundControl` or `Mission Planner`, only predefined frame configurations are available. Because our ROV uses a different thruster layout, a new configuration had to be created.
 
