@@ -90,7 +90,7 @@ A **vanilla HTML/JS/CSS** web page served locally on the topside laptop. Display
 - **No framework dependencies** — pure `<img>` tags with MJPEG `src` URLs for minimal overhead.
 - **Camera labels** for operator orientation (e.g., "Forward", "Down", "Manipulator").
 
-**Stream Resolution:** 640×480
+**Stream Resolution:** 640×480  
 **Grid Layout:** 6 feeds in one window (3×2)
 
 ---
