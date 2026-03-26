@@ -23,10 +23,7 @@ title: Frame & Structure
 | **Wet Weight (slightly positive)** | 7.85 kg (without tether)|
 | **Frame Material** | Carbon fiber |
 | **Depth Rating** | 9 meters |
-| **Manufacturing Method** | -CNC Router (frame and camera enclosures)
--Co² laser (acrylic lens window for camera enclosures)
--3D print (frame joints)
--Hand-cut (silicone gaskets for all enclosures) |
+| **Manufacturing Method** | CNC Router (frame and camera enclosures)<br> CO₂ laser (acrylic lens window for camera enclosures)<br>3D print (frame joints)<br>Hand-cut (silicone gaskets for all enclosures) |
 
 ``
 
