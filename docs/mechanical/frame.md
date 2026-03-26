@@ -18,12 +18,15 @@ title: Frame & Structure
 
 | Parameter | Value |
 |---|---|
-| **Dimensions (L × W × H)** | [INSERT DETAILS HERE] |
-| **Dry Weight** | [INSERT DETAILS HERE] |
-| **Wet Weight (neutrally buoyant)** | [INSERT DETAILS HERE] |
-| **Frame Material** | [INSERT DETAILS HERE] |
-| **Depth Rating** | [INSERT DETAILS HERE] |
-| **Manufacturing Method** | [INSERT DETAILS HERE: CNC, 3D print, waterjet, hand-cut] |
+| **Dimensions (L × W × H)** | 45x35x35 cm |
+| **Dry Weight** | 7.64 kg (without tether) |
+| **Wet Weight (slightly positive)** | 7.85 kg (without tether)|
+| **Frame Material** | Carbon fiber |
+| **Depth Rating** | 9 meters |
+| **Manufacturing Method** | -CNC Router (frame and camera enclosures)
+-Co² laser (acrylic lens window for camera enclosures)
+-3D print (frame joints)
+-Hand-cut (silicone gaskets for all enclosures) |
 
 ``
 
