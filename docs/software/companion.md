@@ -65,13 +65,16 @@ Each camera instance runs with parameters:
 ustreamer \
   --device /dev/video{N} \
   --host 0.0.0.0 \
-  --port 808{N} \
-  --format MJPEG \
-  --resolution [INSERT DETAILS HERE: resolution] \
-  --desired-fps [INSERT DETAILS HERE: FPS]
+  --port 800{N} \
+  --format mjpeg \
+  --resolution 640x480 \
+  --desired-fps 15
+  --allow-origin=*
 ```
 
-[INSERT DETAILS HERE: USB camera model/make, actual /dev/video device assignments, any udev rules for persistent naming]
+[INSERT DETAILS HERE: USB camera model/make] Resolution 640x480 by default , configurable per camera at launch via: start cam <port> <res> FPS: 15
+Devices are autodiscovered at startup using v4l2-ctl --list-devices.Regular USB cameras use the 
+first /dev/videoX node, Intel RealSense uses the fifth.
 
 ---
 
@@ -152,10 +155,10 @@ refresh
 exit
 ```
 
-[Error handling: if a stream fails to start, status shows 
-✗ error in the table. Ctrl+C triggers clean shutdown of 
+Error handling: if a stream fails to start, status shows 
+error in the table. Ctrl+C triggers clean shutdown of 
 all streams and MAVLink. Camera ports start at 8000 and 
-increment by 1 per camera.]
+increment by 1 per camera.
 
 ### Design Rationale
 
