@@ -117,30 +117,45 @@ The **Intel RealSense D435i** connects directly to the Jetson via USB 3.0. The `
 
 ---
 
-## jetson_cli.sh — Service Management CLI
+## stream_cli.py — Service Management CLI
 
-A custom bash wrapper providing a unified interface to start, stop, and monitor all Jetson services.
+A custom Python CLI providing a unified interface to start, stop, and monitor all Jetson camera streams and MAVLink routing.
 
 ### Usage
 
 ```bash
 # Start all camera streams
-./jetson_cli.sh cameras start
+start all
+
+# Start a specific camera
+start cam 8000
+
+# Start a specific camera with custom resolution
+start cam 8000 1280x720
 
 # Stop a specific camera
-./jetson_cli.sh camera 3 stop
+stop cam 8000
+
+# Restart a specific camera
+restart cam 8000
 
 # Start MAVLink routing
-./jetson_cli.sh mavlink start
-
-# Start RealSense recording
-./jetson_cli.sh realsense start
+start mavlink
 
 # Check status of all services
-./jetson_cli.sh status
+list
+
+# Re-discover cameras
+refresh
+
+# Exit and stop everything
+exit
 ```
 
-[INSERT DETAILS HERE: Actual CLI syntax if different from above, any additional subcommands, error handling behavior]
+[Error handling: if a stream fails to start, status shows 
+✗ error in the table. Ctrl+C triggers clean shutdown of 
+all streams and MAVLink. Camera ports start at 8000 and 
+increment by 1 per camera.]
 
 ### Design Rationale
 
