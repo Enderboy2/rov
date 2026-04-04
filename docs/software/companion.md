@@ -24,17 +24,14 @@ The companion computer is an **NVIDIA Jetson Orin Nano** mounted inside the ROV 
 
 ## Service Architecture
 
-All services are managed via `systemd` and controlled through `jetson_cli.sh`, a custom bash CLI wrapper.
+All services are managed and controlled through stream_cli.py, a custom Python CLI.
 
 ### Service Inventory
 
-| Service | Binary | Function | systemd Unit |
-|---|---|---|---|
-| **mavlink-router** | `mavlink-routerd` | MAVLink relay: Cube Orange+ (serial) ↔ Topside (UDP) | `mavlink-router.service` |
-| **ustreamer ×6** | `ustreamer` | MJPEG passthrough for 6 USB cameras | `ustreamer-cam{1..6}.service` |
-| **rs-record** | `rs-record` | RealSense D435i depth recording to NVMe | `rs-record.service` |
-
-[INSERT DETAILS HERE: Exact systemd unit file names if different from above, any additional services running]
+| Service | Binary | Function |
+|---|---|---|
+| **mavlink-router** | `mavlink-routerd` | MAVLink relay: Cube Orange+ (serial) ↔ Topside (UDP) |
+| **ustreamer ×6** | `ustreamer` | MJPEG passthrough for 6 USB cameras |
 
 ---
 
@@ -73,6 +70,7 @@ ustreamer \
 ```
 
 [INSERT DETAILS HERE: USB camera model/make] Resolution 640x480 by default , configurable per camera at launch via: start cam <port> <res> FPS: 15
+
 Devices are autodiscovered at startup using v4l2-ctl --list-devices.Regular USB cameras use the 
 first /dev/videoX node, Intel RealSense uses the fifth.
 
