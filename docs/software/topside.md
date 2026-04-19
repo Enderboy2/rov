@@ -76,7 +76,8 @@ Running inference topside rather than on the Jetson eliminates GPU contention on
 - QGroundControl binds to the virtual joystick, receiving pre-transformed input.
 - Mode toggle is bound to a single button press for instant switching during a mission run.
 
-[INSERT DETAILS HERE: Specific joystick button used for toggle, vJoy driver version, any additional axis scaling factors]
+- **vJoy Driver Version:** 2.2.1.1  
+- **Axis Scaling & Transformation:** The direction vector from the vision software is inverted and scaled to fit the QGroundControl axis input.  
 
 ---
 
